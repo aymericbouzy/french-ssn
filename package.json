@@ -1,0 +1,12 @@
+{
+  "name": "french-ssn",
+  "version": "1.0.0",
+  "description": "A parser / validator for French Social Security Number",
+  "main": "index.js",
+  "author": "Aymeric Bouzy <aymeric.bouzy@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "jest": "^22.4.0"
+  }
+}
