@@ -1,9 +1,5 @@
-import { parse, getControlKey } from "./index"
-
-const tap = arg => {
-  console.log(arg)
-  return arg
-}
+import parse from "./parse"
+import getControlKey from "./getControlKey"
 
 const makeSSN = ({
   gender = "2",
@@ -14,7 +10,7 @@ const makeSSN = ({
   controlKey,
 }) => {
   const partial = `${gender}${year}${month}${place}${rank}`
-  return `${partial}${controlKey || tap(getControlKey(partial))}`
+  return `${partial}${controlKey || getControlKey(partial)}`
 }
 
 describe("invalid SSN", () => {
@@ -44,7 +40,7 @@ describe("invalid SSN", () => {
 
   it("has only (mostly) digits", () => {
     expect(() => parse(makeSSN({ year: "5a" }))).toThrow(
-      "French Social Security Number only allows digits, except for the letters a and b in 7th position",
+      "French Social Security Number only allows digits, except for the letters A and B in 7th position",
     )
   })
 
@@ -78,28 +74,22 @@ describe("result", () => {
       expect(parse(makeSSN({ gender })).gender).toBe("female")
     })
   })
-  it("provides the title")
+
   it("provides the year of birth")
   it("provides the month of birth")
-  it("provides the date of birth (1 month approximate)")
 
   describe("born in France", () => {
     it("provides the birth county code")
-    it("provides the birth county name")
     it("provides the birth city insee code")
-    it("provides the birth city name")
-    it("provides the birth city postal code")
   })
 
   describe("born abroad", () => {
     it("provides the birth country code")
-    it("provides the birth country name")
   })
 
   describe("corner cases", () => {
     it("works for Corsica (both upperCase and lowerCase)")
     it("works for Algeria before 1962")
     it("works with unknown birth month")
-    it("works when controlKey is below 10")
   })
 })
