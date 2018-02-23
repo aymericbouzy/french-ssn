@@ -1,8 +1,13 @@
-import getControlKey from "./getControlKey"
+import checkControlKey from "./checkControlKey"
 import checkFormat from "./parse/checkFormat"
 import makeGender from "./parse/makeGender"
 import makeMonth from "./parse/makeMonth"
 import makeYear from "./parse/makeYear"
+import makePlace from "./parse/makePlace"
+
+const addTitle = () => {}
+const addApproximateAge = () => {}
+const addApproximateBirthDate = () => {}
 
 export default ssn => {
   checkFormat(ssn)
@@ -12,15 +17,14 @@ export default ssn => {
   if (!parts) {
     throw new Error("Unexpected error")
   }
-  const [partialSsn, gender, year, month, , , controlKey] = parts.slice(1)
-  const expectedControlKey = getControlKey(partialSsn)
-  if (controlKey != expectedControlKey) {
-    throw new Error(
-      `Control key does not match (expected ${expectedControlKey})`,
-    )
-  }
+  const [partialSsn, gender, year, month, place, , controlKey] = parts.slice(1)
+  checkControlKey(partialSsn, controlKey)
   result.birth.month = makeMonth(month)
   result.gender = makeGender(gender)
   result.birth.year = makeYear(year)
+  result.birth = makePlace(place, result.birth.year)
+  addTitle(result)
+  addApproximateBirthDate(result)
+  addApproximateAge(result)
   return result
 }
