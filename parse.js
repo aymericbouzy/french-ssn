@@ -1,56 +1,26 @@
 import getControlKey from "./getControlKey"
-
-const between = (lower, value, upper) => lower <= value && value <= upper
+import checkFormat from "./parse/checkFormat"
+import makeGender from "./parse/makeGender"
+import makeMonth from "./parse/makeMonth"
+import makeYear from "./parse/makeYear"
 
 export default ssn => {
-  const result = {}
-  if (typeof ssn !== "string") {
-    throw new Error("French Social Security Number must be a string")
-  }
-  if (ssn.length !== 15) {
-    throw new Error("French Social Security Number must be 15 characters long")
-  }
-  if (!/^\d{6}[0-9abAB]\d{8}$/.test(ssn)) {
-    throw new Error(
-      "French Social Security Number only allows digits, except for the letters A and B in 7th position",
-    )
-  }
+  checkFormat(ssn)
+  const result = { birth: {} }
   const re = /^((\d)(\d{2})(\d{2})(\d{5}|2[abAB]\d{3})(\d{3}))(\d{2})$/
   const parts = re.exec(ssn)
   if (!parts) {
-    throw new Error()
+    throw new Error("Unexpected error")
   }
-  const [partialSsn, gender, , month, , , controlKey] = parts.slice(1)
-  if (between(1, month, 12)) {
-    result.month = month
-  } else if (
-    between(30, month, 42) ||
-    between(50, month, 99) ||
-    month === "20"
-  ) {
-    result.month = "unkown"
-  } else {
-    throw new Error("Month appears to be incorrect")
-  }
-  switch (gender) {
-    case "1":
-    case "3":
-    case "7":
-      result.gender = "male"
-      break
-    case "2":
-    case "4":
-    case "8":
-      result.gender = "female"
-      break
-    default:
-      throw new Error("Gender has to be among 1, 2, 3, 4, 7 and 8")
-  }
+  const [partialSsn, gender, year, month, , , controlKey] = parts.slice(1)
   const expectedControlKey = getControlKey(partialSsn)
   if (controlKey != expectedControlKey) {
     throw new Error(
       `Control key does not match (expected ${expectedControlKey})`,
     )
   }
+  result.birth.month = makeMonth(month)
+  result.gender = makeGender(gender)
+  result.birth.year = makeYear(year)
   return result
 }

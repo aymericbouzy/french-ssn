@@ -1,5 +1,5 @@
-const padKey = key => (key < 10 ? `0${key}` : `${key}`)
+import pad from "./pad"
 
 export default partialSsn => {
-  return padKey(97 - parseInt(partialSsn.replace(/[abAB]/, "0")) % 97)
+  return pad(97 - parseInt(partialSsn.replace(/[abAB]/, "0")) % 97, 2)
 }
