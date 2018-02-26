@@ -1,10 +1,8 @@
 import between from "./between"
-import countries from "./countries.json"
-import cities from "./cities.json"
-import counties from "./counties.json"
-import algerianCities from "./algerianCities.json"
-// import tunisianCities from "./tunisianCities.json"
-// import moroccanCities from "./moroccanCities.json"
+import countries from "../../data/countries.json"
+import cities from "../../data/cities.json"
+import counties from "../../data/counties.json"
+import algerianCities from "../../data/algerianCities.json"
 
 const makeGetInsee = ({
   items,
