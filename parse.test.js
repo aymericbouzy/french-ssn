@@ -20,6 +20,19 @@ describe("born in France", () => {
           name: "avril",
           index: 4,
         },
+        city: {
+          insee: "78650",
+          name: "LE VESINET",
+          postalCode: "78110",
+        },
+        country: {
+          insee: "100",
+          name: "France",
+        },
+        county: {
+          insee: "78",
+          name: "Yvelines",
+        },
       },
     })
   })

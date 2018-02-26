@@ -7,7 +7,7 @@ export default ({
   gender = "2",
   year = "89",
   month = "04",
-  place = "78342",
+  place = "78650",
   rank = "163",
   controlKey,
 }) => {

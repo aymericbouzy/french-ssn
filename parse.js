@@ -22,7 +22,10 @@ export default ssn => {
   result.birth.month = makeMonth(month)
   result.gender = makeGender(gender)
   result.birth.year = makeYear(year)
-  result.birth = makePlace(place, result.birth.year)
+  result.birth = {
+    ...result.birth,
+    ...makePlace(place, result.birth.year),
+  }
   addTitle(result)
   addApproximateBirthDate(result)
   addApproximateAge(result)
