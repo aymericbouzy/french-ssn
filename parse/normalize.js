@@ -2,6 +2,7 @@ export default ssn => {
   if (typeof ssn !== "string") {
     throw new Error("French Social Security Number must be a string")
   }
+  ssn = ssn.replace(/[^0-9ab]/gi, "")
   if (ssn.length !== 15) {
     throw new Error("French Social Security Number must be 15 characters long")
   }
@@ -10,4 +11,5 @@ export default ssn => {
       "French Social Security Number only allows digits, except for the letters A and B in 7th position",
     )
   }
+  return ssn
 }

@@ -38,13 +38,7 @@ describe("born in France", () => {
   })
 })
 
-describe("born abroad", () => {
-  it("provides the birth country code")
-})
-
 describe("corner cases", () => {
-  it("works for Corsica (both upperCase and lowerCase)")
-  it("works for Algeria before 1962")
   it("works with unknown birth month", () => {
     expect(
       parse(

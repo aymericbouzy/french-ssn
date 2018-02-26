@@ -1,5 +1,5 @@
 import checkControlKey from "./checkControlKey"
-import checkFormat from "./parse/checkFormat"
+import normalize from "./parse/normalize"
 import makeGender from "./parse/makeGender"
 import makeMonth from "./parse/makeMonth"
 import makeYear from "./parse/makeYear"
@@ -10,7 +10,7 @@ const addApproximateAge = () => {}
 const addApproximateBirthDate = () => {}
 
 export default ssn => {
-  checkFormat(ssn)
+  ssn = normalize(ssn)
   const result = { birth: {} }
   const re = /^((\d)(\d{2})(\d{2})(\d{5}|2[abAB]\d{3})(\d{3}))(\d{2})$/
   const parts = re.exec(ssn)
