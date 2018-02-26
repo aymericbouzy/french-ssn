@@ -8,3 +8,8 @@ it("adds missing zeros", () => {
 it("allows strings with leading zeros", () => {
   expect(pad("089", 3)).toBe("089")
 })
+
+it("works for powers of 10", () => {
+  expect(pad(1, 2)).toBe("01")
+  expect(pad(10, 2)).toBe("10")
+})

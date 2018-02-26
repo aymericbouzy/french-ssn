@@ -1,6 +1,6 @@
 const getLength = string => {
   if (typeof string === "number") {
-    return Math.ceil(Math.log(string) / Math.log(10))
+    string = string.toString()
   }
   if (typeof string === "string") {
     return string.length
