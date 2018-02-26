@@ -16,12 +16,7 @@ describe("birth country", () => {
   })
 
   it("works for Algerian people before 1962", () => {
-    ;[
-      "91112",
-      "92519",
-      // "93",
-      // "94"
-    ].map(insee => {
+    ;["91112", "92519", "93101", "94423"].map(insee => {
       expect(makePlace(insee, 1962).country).toEqual({
         insee: "352",
         name: "Algérie",
@@ -49,10 +44,9 @@ describe("birth country", () => {
       insee: "351",
       name: "Tunisie",
     })
-    expect(makePlace("96101", 1965).country).toEqual({
-      insee: "100",
-      name: "France",
-    })
+    expect(() => makePlace("96101", 1965).country).toThrow(
+      "Il ne semble pas y avoir de département ayant le code Insee 96",
+    )
   })
 
   it("works for DOM", () => {
@@ -64,9 +58,9 @@ describe("birth country", () => {
 })
 
 it("rejects 00 and 20 county codes", () => {
-  ;["00, 20"].map(countyCode => {
+  ;["00", "20"].map(countyCode => {
     expect(() => makePlace(`${countyCode}101`)).toThrow(
-      `Le département ${countyCode} n'existe pas.`,
+      `Il ne semble pas y avoir de département ayant le code Insee ${countyCode}`,
     )
   })
 })
@@ -89,15 +83,17 @@ it("works for Corsica", () => {
     name: "Corse-du-Sud",
   })
   expect(makePlace("2A048").city).toEqual({
-    index: "2A048",
+    insee: "2A048",
     name: "CALCATOGGIO",
+    postalCode: "20111",
   })
 })
 
 it("includes the city when born in France", () => {
   expect(makePlace("78396").city).toEqual({
     insee: "78396",
-    name: "LE MESNIL LE ROI",
+    name: "LE MESNIL-LE-ROI",
+    postalCode: "78600",
   })
 })
 
@@ -105,10 +101,12 @@ it("includes the city when born in Algeria before 1962", () => {
   expect(makePlace("91112", 1956).city).toEqual({
     insee: "91112",
     name: "Aïn-Taya",
+    postalCode: null,
   })
 
   expect(makePlace("91112", 1978).city).toEqual({
     insee: "91112",
     name: "BROUY",
+    postalCode: "91150",
   })
 })

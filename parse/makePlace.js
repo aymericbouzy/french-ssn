@@ -39,14 +39,14 @@ const getAlgerianCity = makeGetCity({
   cities: algerianCities,
   name: "commune algérienne",
 })
-// const getTunisianCity = makeGetCity({
-//   cities: tunisianCities,
-//   name: "commune tunisienne",
-// })
-// const getmoroccanCity = makeGetCity({
-//   cities: moroccanCities,
-//   name: "commune marocaine",
-// })
+const getTunisianCity = makeGetCity({
+  cities: {},
+  name: "commune tunisienne",
+})
+const getmoroccanCity = makeGetCity({
+  cities: {},
+  name: "commune marocaine",
+})
 
 export default (insee, year) => {
   const result = /^([0-8][0-9]|2[abAB]|9[0-69]|9[78][0-9])(\d+)$/.exec(insee)
@@ -63,12 +63,12 @@ export default (insee, year) => {
     if (between(91, countyCode, 94) && year <= 1962) {
       return { country: getCountry("352"), city: getAlgerianCity(insee) }
     }
-    // if (countyCode === "95" && year < 1964) {
-    //   return { country: getCountry(351), city: getTunisianCity(insee) }
-    // }
-    // if (countyCode === "96" && year < 1964) {
-    //   return { country: getCountry(350), city: getmoroccanCity(insee) }
-    // }
+    if (countyCode === "95" && year <= 1964) {
+      return { country: getCountry("350"), city: getTunisianCity(insee) }
+    }
+    if (countyCode === "96" && year <= 1964) {
+      return { country: getCountry("351"), city: getmoroccanCity(insee) }
+    }
   }
   return {
     country: getCountry("100"),
