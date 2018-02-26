@@ -1,4 +1,4 @@
-const between = (lower, value, upper) => lower <= value && value <= upper
+import between from "./between"
 
 const months = [
   "janvier",
