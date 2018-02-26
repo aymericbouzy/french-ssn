@@ -5,9 +5,6 @@ it("is a string", () => {
   expect(() => normalize()).toThrow(
     "French Social Security Number must be a string",
   )
-  expect(() => normalize(123)).toThrow(
-    "French Social Security Number must be a string",
-  )
   expect(() => normalize({})).toThrow(
     "French Social Security Number must be a string",
   )
@@ -37,4 +34,8 @@ it("accepts spaces", () => {
 
 it("accepts all sorts of things", () => {
   expect(normalize("SSN: 2 55,08 2B.168    025 12qgls")).toBe("255082B16802512")
+})
+
+it("accepts numbers", () => {
+  expect(normalize(255081416802512)).toBe("255081416802512")
 })

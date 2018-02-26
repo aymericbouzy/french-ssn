@@ -1,4 +1,7 @@
 export default ssn => {
+  if (typeof ssn === "number") {
+    ssn = ssn.toString()
+  }
   if (typeof ssn !== "string") {
     throw new Error("French Social Security Number must be a string")
   }
