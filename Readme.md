@@ -54,10 +54,10 @@ getControlKey("2 55 08 14 168 025") // 38
 ## Api
 
 | Method | arguments | returned value | throws |
-| ------------- | ------------- |
-| `parse` | `ssn: string | number` : You may provide your ssn in various formats : a number with 15 digits, a string, with or without spaces, or any other delimiting character | an object containing information about the ssn owner | will throw if ssn is not correctly formated, if control key does not match, or if information provided does not make sense. Will not throw if birth city was not found. |
-| `isValid` | `ssn: string | number` | `boolean` (this is only a convenience function, it calls `parse` under the hood in a try catch block) | never |
-| `getControlKey` | `partialSSN: string | number` : The first 13 characters of the ssn | `string` : the control key (2 digits between "01" and "97") | Will throw if ssn is not correctly formated |
+| ------ | --------- | -------------- | ------ |
+| `parse` | `ssn: string \| number` : You may provide your ssn in various formats : a number with 15 digits, a string, with or without spaces, or any other delimiting character | an object containing information about the ssn owner | will throw if ssn is not correctly formated, if control key does not match, or if information provided does not make sense. Will not throw if birth city was not found. |
+| `isValid` | `ssn: string \| number` | `boolean` (this is only a convenience function, it calls `parse` under the hood in a try catch block) | never |
+| `getControlKey` | `partialSSN: string \| number` : The first 13 characters of the ssn | `string` : the control key (2 digits between "01" and "97") | will throw if ssn is not correctly formated |
 
 ## Features
 
@@ -90,4 +90,4 @@ yarn test
 
 ## Financial Support
 
-Gofer 🤝 (the human-centric work-on-demand solution) is the main support of this package
+Gofer 🤝 (the human-centric work-on-demand solution) is the main support of this package.
