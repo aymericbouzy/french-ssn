@@ -66,6 +66,7 @@ getControlKey("2 55 08 14 168 025") // 38
 * Birth in Foreign countries
 * Birth in Algeria before 1962
 * Birth in Morocco or Tunisia before 1964
+* No dependencies (only dev dependencies)
 
 ## Limitations
 
