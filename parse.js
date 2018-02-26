@@ -1,5 +1,5 @@
 import checkControlKey from "./checkControlKey"
-import normalize from "./parse/normalize"
+import normalize from "./normalize"
 import makeGender from "./parse/makeGender"
 import makeMonth from "./parse/makeMonth"
 import makeYear from "./parse/makeYear"

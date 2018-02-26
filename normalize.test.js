@@ -1,24 +1,24 @@
 import normalize from "./normalize"
-import makeSSN from "../makeSSN"
+import makeSSN from "./makeSSN"
 
 it("is a string", () => {
   expect(() => normalize()).toThrow(
-    "French Social Security Number must be a string",
+    "Input must be a string or a 15 digits number",
   )
   expect(() => normalize({})).toThrow(
-    "French Social Security Number must be a string",
+    "Input must be a string or a 15 digits number",
   )
   expect(() => normalize([1, 23, 34])).toThrow(
-    "French Social Security Number must be a string",
+    "Input must be a string or a 15 digits number",
   )
 })
 
 it("has 15 characters", () => {
   expect(() => normalize("12345671234567")).toThrow(
-    "French Social Security Number must be 15 characters long",
+    "Input must be 15 characters long",
   )
   expect(() => normalize("1234567812345678")).toThrow(
-    "French Social Security Number must be 15 characters long",
+    "Input must be 15 characters long",
   )
 })
 
@@ -38,4 +38,11 @@ it("accepts all sorts of things", () => {
 
 it("accepts numbers", () => {
   expect(normalize(255081416802512)).toBe("255081416802512")
+})
+
+it("allows a variable length", () => {
+  expect(normalize(2550814168025, { length: 13 })).toBe("2550814168025")
+  expect(() => normalize(255081416802512, { length: 13 })).toThrow(
+    "Input must be 13 characters long",
+  )
 })
