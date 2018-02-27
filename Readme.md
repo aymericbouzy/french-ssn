@@ -1,4 +1,8 @@
+
 # 🇫🇷 French Social Security Number Parser
+
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) ![npm](https://img.shields.io/npm/v/french-ssn.svg) [![CircleCI Build Status](https://circleci.com/gh/aymericbouzy/french-ssn.svg?style=shield)](https://circleci.com/gh/aymericbouzy/french-ssn)
+
 
 "A la carte" parsing, validation and creation of French Social Security Numbers.
 
