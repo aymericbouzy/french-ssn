@@ -5,9 +5,9 @@ import makeMonth from "./parse/makeMonth"
 import makeYear from "./parse/makeYear"
 import makePlace from "./parse/makePlace"
 import addTitle from "./parse/addTitle"
+import addApproximateBirthDate from "./parse/addApproximateBirthDate"
 
-export const addApproximateAge = () => {}
-export const addApproximateBirthDate = () => {}
+const addApproximateAge = () => {}
 
 export default ssn => {
   ssn = normalize(ssn)

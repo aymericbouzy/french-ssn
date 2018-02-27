@@ -21,6 +21,7 @@ describe("born in France", () => {
           name: "avril",
           index: 4,
         },
+        approximateDate: expect.any(Date),
         city: {
           insee: "78650",
           name: "LE VESINET",

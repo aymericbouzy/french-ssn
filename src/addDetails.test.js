@@ -1,6 +1,0 @@
-it("adds title")
-it("adds the date of birth (1 month approximate)")
-it("adds the birth county name")
-it("adds the birth city name")
-it("adds the birth city postal code")
-it("adds the birth country name")
