@@ -36,7 +36,9 @@ jobs:
       # run tests!
       - run:
           name: Jest Suite
-          command: yarn jest --ci --testResultsProcessor="jest-junit" --runInBand
+          command: yarn jest --ci --testResultsProcessor="jest-junit" --runInBand --coverage
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
 
+      # upload coverage results to CodeCov
+      - run: bash <(curl -s https://codecov.io/bash)
