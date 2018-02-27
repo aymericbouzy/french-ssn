@@ -88,6 +88,10 @@ yarn install
 yarn test
 ```
 
+## Issues
+
+Something is not working as expected? Some data is wrong? Documentation is missing? You need a different feature / API? Please file an [issue](https://github.com/aymericbouzy/french-ssn/issues/new), we'll be in touch.
+
 ## References
 
 (in French)
