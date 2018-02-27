@@ -34,11 +34,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run:
-          name: Jest Suite
-          command: yarn jest --ci --testResultsProcessor="jest-junit" --runInBand --coverage
-          environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
-
-      # upload coverage results to CodeCov
-      - run: bash <(curl -s https://codecov.io/bash)
+      - run: yarn test --ci && yarn codecov

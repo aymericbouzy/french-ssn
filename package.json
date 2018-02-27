@@ -41,5 +41,9 @@
   "files": [
     "dist",
     "data"
-  ]
+  ],
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  }
 }
