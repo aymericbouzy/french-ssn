@@ -8,4 +8,11 @@ it(`adds "M" if gender is male`, () => {
     title: "M",
   })
 })
-it(`adds "Mme" if gender is female`)
+it(`adds "Mme" if gender is female`, () => {
+  const result = { gender: "female" }
+  addTitle(result)
+  expect(result).toEqual({
+    gender: "female",
+    title: "Mme",
+  })
+})
