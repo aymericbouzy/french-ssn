@@ -4,10 +4,10 @@ import makeGender from "./parse/makeGender"
 import makeMonth from "./parse/makeMonth"
 import makeYear from "./parse/makeYear"
 import makePlace from "./parse/makePlace"
+import addTitle from "./parse/addTitle"
 
-const addTitle = () => {}
-const addApproximateAge = () => {}
-const addApproximateBirthDate = () => {}
+export const addApproximateAge = () => {}
+export const addApproximateBirthDate = () => {}
 
 export default ssn => {
   ssn = normalize(ssn)

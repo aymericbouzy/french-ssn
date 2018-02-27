@@ -14,6 +14,7 @@ describe("born in France", () => {
       ),
     ).toEqual({
       gender: "female",
+      title: "Mme",
       birth: {
         year: 1989,
         month: {
