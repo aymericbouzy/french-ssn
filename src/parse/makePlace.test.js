@@ -110,3 +110,7 @@ it("includes the city when born in Algeria before 1962", () => {
     postalCode: "91150",
   })
 })
+
+it("throws if input is not a string of 5 digits", () => {
+  expect(() => makePlace()).toThrow("Unkown error")
+})

@@ -13,3 +13,7 @@ it("works for powers of 10", () => {
   expect(pad(1, 2)).toBe("01")
   expect(pad(10, 2)).toBe("10")
 })
+
+it("throws on input that is not a number or a string", () => {
+  expect(() => pad(undefined, 2)).toThrow("Cannot pad")
+})

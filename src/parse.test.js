@@ -59,4 +59,8 @@ describe("corner cases", () => {
       }),
     )
   })
+
+  it("throws an error if weird format", () => {
+    expect(() => parse(makeSSN({ place: "7b231" }))).toThrow("Unexpected error")
+  })
 })
