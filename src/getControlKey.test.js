@@ -8,3 +8,8 @@ it("returns the expected control key", () => {
 it("pads the key with zeros", () => {
   expect(getControlKey("2890478342210")).toBe("02")
 })
+
+it("works for Corsica", () => {
+  expect(getControlKey("289042A342163")).toBe("90")
+  expect(getControlKey("289042B342163")).toBe("20")
+})
