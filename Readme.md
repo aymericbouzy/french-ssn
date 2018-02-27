@@ -22,12 +22,16 @@ import { parse, isValid, getControlKey } from "french-ssn"
 parse("2 55 08 14 168 025 38")
 /*
 {
+  gender: 'female',
+  title: 'Mme',
+  approximateAge: 62,
   birth: {
     month: {
       name: 'août',
       index: 8
     },
     year: 1955,
+    approximateDate: 1955-08-17T00:00:00.000Z,
     country: {
       insee: '100',
       name: 'France'
@@ -40,9 +44,8 @@ parse("2 55 08 14 168 025 38")
       postalCode: '14710',
       name: 'COLOMBIERES',
       insee: '14168'
-    },
-  },
-  gender: 'female',
+    }
+  }
 }
 */
 
