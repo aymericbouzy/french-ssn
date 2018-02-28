@@ -102,6 +102,7 @@ Something is not working as expected? Some data is wrong? Documentation is missi
 * [https://www.service-public.fr/particuliers/vosdroits/F33078](https://www.service-public.fr/particuliers/vosdroits/F33078)
 * [https://www.wikiberal.org/w/images/1/1a/Num%C3%A9ro_de_S%C3%A9curit%C3%A9_sociale.pdf](https://www.wikiberal.org/w/images/1/1a/Num%C3%A9ro_de_S%C3%A9curit%C3%A9_sociale.pdf)
 * [https://public.opendatasoft.com/explore/dataset/correspondance-code-insee-code-postal/](https://public.opendatasoft.com/explore/dataset/correspondance-code-insee-code-postal/)
+* [https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France](https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France)
 
 ## Financial Support
 
