@@ -1,8 +1,6 @@
-
 # 🇫🇷 French Social Security Number Parser
 
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) [![npm version](https://badge.fury.io/js/french-ssn.svg)](http://badge.fury.io/js/french-ssn) [![CircleCI Build Status](https://circleci.com/gh/aymericbouzy/french-ssn.svg?style=shield)](https://circleci.com/gh/aymericbouzy/french-ssn) [![codecov](https://codecov.io/gh/aymericbouzy/french-ssn/branch/master/graph/badge.svg)](https://codecov.io/gh/aymericbouzy/french-ssn)
-
 
 "A la carte" parsing, validation and creation of French Social Security Numbers.
 
@@ -26,8 +24,10 @@ import { parse, isValid, getControlKey } from "french-ssn"
 parse("2 55 08 14 168 025 38")
 /*
 {
-  gender: 'female',
-  title: 'Mme',
+  gender: {
+    name: 'female',
+    title: 'Mme',
+  },
   approximateAge: 62,
   birth: {
     month: {
@@ -62,7 +62,7 @@ getControlKey("2 55 08 14 168 025") // 38
 
 | Method | arguments | returned value | throws |
 | ------ | --------- | -------------- | ------ |
-| `parse` | `ssn: string \| number` : You may provide your ssn in various formats : a number with 15 digits, a string, with or without spaces, or any other delimiting character | an object containing information about the ssn owner | will throw if ssn is not correctly formated, if control key does not match, or if information provided does not make sense. Will not throw if birth city was not found. |
+| `parse` | `ssn: string \| number` : You may provide your ssn in various formats : a number with 15 digits, a string, with or without spaces, or any other delimiting character | an object containing information about the ssn owner | will throw if ssn is not correctly formated or if control key does not match. Will not throw if information provided does not make sense, information will simply be marked as "unknown". Eg: `parse("0 ...").gender = { unknown: true }` |
 | `isValid` | `ssn: string \| number` | `boolean` (this is only a convenience function, it calls `parse` under the hood in a try catch block) | never |
 | `getControlKey` | `partialSSN: string \| number` : The first 13 characters of the ssn | `string` : the control key (2 digits between "01" and "97") | will throw if ssn is not correctly formated |
 
