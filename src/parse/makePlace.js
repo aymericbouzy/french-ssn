@@ -42,6 +42,14 @@ const getmoroccanCity = makeGetCity({
   cities: {},
 })
 
+const makePlace = ({ country, county = unknown(), city = unknown() }) => {
+  return {
+    country: country || (county.unknown ? unknown() : getCountry("100")),
+    county,
+    city,
+  }
+}
+
 export default (insee, year) => {
   const result = /^([0-8][0-9]|2[abAB]|9[0-69]|9[78][0-9])(\d+)$/.exec(insee)
   if (!result) {
@@ -49,25 +57,32 @@ export default (insee, year) => {
   }
   const [countyCode, code] = result.slice(1)
   if (countyCode === "99") {
-    return {
+    return makePlace({
       country: getCountry(code),
-    }
+    })
   }
   if (year) {
     if (between(91, countyCode, 94) && year <= 1962) {
-      return { country: getCountry("352"), city: getAlgerianCity(insee) }
+      return makePlace({
+        country: getCountry("352"),
+        city: getAlgerianCity(insee),
+      })
     }
     if (countyCode === "95" && year <= 1964) {
-      return { country: getCountry("350"), city: getTunisianCity(insee) }
+      return makePlace({
+        country: getCountry("350"),
+        city: getTunisianCity(insee),
+      })
     }
     if (countyCode === "96" && year <= 1964) {
-      return { country: getCountry("351"), city: getmoroccanCity(insee) }
+      return makePlace({
+        country: getCountry("351"),
+        city: getmoroccanCity(insee),
+      })
     }
   }
-  const county = getCounty(countyCode)
-  return {
-    country: county.unknown ? unknown() : getCountry("100"),
-    county,
+  return makePlace({
+    county: getCounty(countyCode),
     city: getCity(insee),
-  }
+  })
 }

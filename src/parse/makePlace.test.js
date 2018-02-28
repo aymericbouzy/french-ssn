@@ -9,9 +9,17 @@ describe("birth country", () => {
   })
 
   it("is born abroad", () => {
-    expect(makePlace("99351").country).toEqual({
-      insee: "351",
-      name: "Tunisie",
+    expect(makePlace("99351")).toEqual({
+      country: {
+        insee: "351",
+        name: "Tunisie",
+      },
+      county: {
+        unknown: true,
+      },
+      city: {
+        unknown: true,
+      },
     })
   })
 
