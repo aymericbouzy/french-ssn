@@ -60,7 +60,11 @@ it("00, 20 and 96 county codes have an unknown country", () => {
     expect(makePlace(`${countyCode}101`, 1980)).toEqual({
       city: { insee: `${countyCode}101`, unknown: true },
       country: { unknown: true },
-      county: { insee: countyCode, unknown: true },
+      county: {
+        insee: countyCode,
+        unknown: true,
+        error: "appears to be incorrect",
+      },
     })
   })
 })

@@ -3,16 +3,16 @@ import countries from "../../data/countries.json"
 import cities from "../../data/cities.json"
 import counties from "../../data/counties.json"
 import algerianCities from "../../data/algerianCities.json"
-
-const unknown = () => ({ unknown: true })
+import unknown from "./unknown"
 
 const makeGetInsee = ({
   items,
   merge = (insee, name) => ({ insee, name }),
+  error,
 }) => insee => {
   const item = items[insee]
   if (!item) {
-    return { insee, unknown: true }
+    return { insee, ...unknown(error) }
   }
   return merge(insee, item)
 }
@@ -28,7 +28,10 @@ const makeGetCity = ({ cities }) =>
   })
 
 const getCountry = makeGetInsee({ items: countries })
-const getCounty = makeGetInsee({ items: counties })
+const getCounty = makeGetInsee({
+  items: counties,
+  error: "appears to be incorrect",
+})
 const getCity = makeGetCity({ cities })
 const getAlgerianCity = makeGetCity({
   cities: algerianCities,

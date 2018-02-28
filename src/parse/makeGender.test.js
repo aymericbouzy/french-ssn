@@ -10,7 +10,8 @@ it("returns the gender", () => {
 })
 
 it("has possible gender", () => {
-  expect(() => makeGender("0")).toThrow(
-    "Gender has to be among 1, 2, 3, 4, 7 and 8",
-  )
+  expect(makeGender("0")).toEqual({
+    unknown: true,
+    error: "has to be among 1, 2, 3, 4, 7 and 8",
+  })
 })

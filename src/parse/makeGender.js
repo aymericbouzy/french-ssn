@@ -1,3 +1,5 @@
+import unknown from "./unknown"
+
 export default gender => {
   gender = parseInt(gender)
   switch (gender) {
@@ -10,6 +12,6 @@ export default gender => {
     case 8:
       return "female"
     default:
-      throw new Error("Gender has to be among 1, 2, 3, 4, 7 and 8")
+      return unknown("has to be among 1, 2, 3, 4, 7 and 8")
   }
 }

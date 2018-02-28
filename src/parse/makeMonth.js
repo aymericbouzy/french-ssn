@@ -1,4 +1,5 @@
 import between from "./between"
+import unknown from "./unknown"
 
 const months = [
   "janvier",
@@ -24,9 +25,7 @@ export default month => {
     }
   }
   if (between(30, month, 42) || between(50, month, 99) || month === 20) {
-    return {
-      unknown: true,
-    }
+    return unknown()
   }
-  throw new Error("Month appears to be incorrect")
+  return unknown("appears to be incorrect")
 }
