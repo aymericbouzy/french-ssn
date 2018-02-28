@@ -19,9 +19,9 @@ npm i --save french-ssn
 ## Usage
 
 ```js
-import { parse, isValid, getControlKey } from "french-ssn"
+import SSN from "french-ssn"
 
-parse("2 55 08 14 168 025 38")
+SSN.parse("2 55 08 14 168 025 38")
 /*
 {
   gender: {
@@ -53,9 +53,10 @@ parse("2 55 08 14 168 025 38")
 }
 */
 
-isValid("2 55 08 14 168 025 12") // false
-isValid("2 55 08 14 168 025 38") // true
-getControlKey("2 55 08 14 168 025") // 38
+SSN.isValid("2 55 08 14 168 025 12") // false
+SSN.isValid("2 55 08 14 168 025 38") // true
+SSN.getControlKey("2 55 08 14 168 025") // "38"
+SSN.make({ gender: 1, month: 5, year: 78, place: "99330", rank: 108 }) // "178059933010817"
 ```
 
 ## Api
@@ -65,6 +66,7 @@ getControlKey("2 55 08 14 168 025") // 38
 | `parse` | `ssn: string \| number` : You may provide your ssn in various formats : a number with 15 digits, a string, with or without spaces, or any other delimiting character | an object containing information about the ssn owner | will throw if ssn is not correctly formated or if control key does not match. Will not throw if information provided does not make sense, information will simply be marked as "unknown". Eg: `parse("0 ...").gender = { unknown: true }` |
 | `isValid` | `ssn: string \| number` | `boolean` (this is only a convenience function, it calls `parse` under the hood in a try catch block) | never |
 | `getControlKey` | `partialSSN: string \| number` : The first 13 characters of the ssn | `string` : the control key (2 digits between "01" and "97") | will throw if ssn is not correctly formated |
+| `make` | `params: { gender: string? \| number?, month: string? \| number?, year: string? \| number?, place: string? \| number?, rank: string? \| number?, controlKey: string? \| number? }` | `string` Mostly useful for tests, this function creates an SSN with the given params. If controlKey is not provided it is auto filled with a valid value. All named parameters of the function are optionnal. | |
 
 ## Features
 
