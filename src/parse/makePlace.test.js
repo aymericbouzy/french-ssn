@@ -44,9 +44,7 @@ describe("birth country", () => {
       insee: "351",
       name: "Tunisie",
     })
-    expect(() => makePlace("96101", 1965).country).toThrow(
-      "Il ne semble pas y avoir de département ayant le code Insee 96",
-    )
+    expect(makePlace("96101", 1965).country).toEqual({ unknown: true })
   })
 
   it("works for DOM", () => {
@@ -57,11 +55,13 @@ describe("birth country", () => {
   })
 })
 
-it("rejects 00 and 20 county codes", () => {
-  ;["00", "20"].map(countyCode => {
-    expect(() => makePlace(`${countyCode}101`)).toThrow(
-      `Il ne semble pas y avoir de département ayant le code Insee ${countyCode}`,
-    )
+it("00, 20 and 96 county codes have an unknown country", () => {
+  ;["00", "20", "96"].map(countyCode => {
+    expect(makePlace(`${countyCode}101`, 1980)).toEqual({
+      city: { insee: `${countyCode}101`, unknown: true },
+      country: { unknown: true },
+      county: { insee: countyCode, unknown: true },
+    })
   })
 })
 

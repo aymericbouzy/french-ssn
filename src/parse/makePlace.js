@@ -4,25 +4,22 @@ import cities from "../../data/cities.json"
 import counties from "../../data/counties.json"
 import algerianCities from "../../data/algerianCities.json"
 
+const unknown = () => ({ unknown: true })
+
 const makeGetInsee = ({
   items,
-  name,
   merge = (insee, name) => ({ insee, name }),
-  skipError = false,
 }) => insee => {
   const item = items[insee]
-  if (!item && !skipError) {
-    throw new Error(
-      `Il ne semble pas y avoir de ${name} ayant le code Insee ${insee}`,
-    )
+  if (!item) {
+    return { insee, unknown: true }
   }
   return merge(insee, item)
 }
 
-const makeGetCity = ({ cities, name }) =>
+const makeGetCity = ({ cities }) =>
   makeGetInsee({
     items: cities,
-    name,
     merge: (insee, city = []) => {
       const [postalCode, name] = city
       return { postalCode, name, insee }
@@ -30,20 +27,17 @@ const makeGetCity = ({ cities, name }) =>
     skipError: true,
   })
 
-const getCountry = makeGetInsee({ items: countries, name: "pays" })
-const getCounty = makeGetInsee({ items: counties, name: "département" })
-const getCity = makeGetCity({ cities, name: "commune" })
+const getCountry = makeGetInsee({ items: countries })
+const getCounty = makeGetInsee({ items: counties })
+const getCity = makeGetCity({ cities })
 const getAlgerianCity = makeGetCity({
   cities: algerianCities,
-  name: "commune algérienne",
 })
 const getTunisianCity = makeGetCity({
   cities: {},
-  name: "commune tunisienne",
 })
 const getmoroccanCity = makeGetCity({
   cities: {},
-  name: "commune marocaine",
 })
 
 export default (insee, year) => {
@@ -68,9 +62,10 @@ export default (insee, year) => {
       return { country: getCountry("351"), city: getmoroccanCity(insee) }
     }
   }
+  const county = getCounty(countyCode)
   return {
-    country: getCountry("100"),
-    county: getCounty(countyCode),
+    country: county.unknown ? unknown() : getCountry("100"),
+    county,
     city: getCity(insee),
   }
 }
