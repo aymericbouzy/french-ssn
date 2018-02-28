@@ -4,5 +4,5 @@ const titles = {
 }
 
 export default data => {
-  data.title = titles[data.gender]
+  data.gender.title = titles[data.gender.name]
 }
