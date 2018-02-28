@@ -2,7 +2,7 @@
 
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) [![npm version](https://badge.fury.io/js/french-ssn.svg)](http://badge.fury.io/js/french-ssn) [![CircleCI Build Status](https://circleci.com/gh/aymericbouzy/french-ssn.svg?style=shield)](https://circleci.com/gh/aymericbouzy/french-ssn) [![codecov](https://codecov.io/gh/aymericbouzy/french-ssn/branch/master/graph/badge.svg)](https://codecov.io/gh/aymericbouzy/french-ssn)
 
-"A la carte" parsing, validation and creation of French Social Security Numbers.
+"A la carte" parsing, validation and creation of French Social Security Numbers (named by French people as "Carte Vitale", "Numéro de sécu", "Numéro de sécurité sociale", "NIR", "Carte de sécu" ...)
 
 ## Installation
 
@@ -102,6 +102,7 @@ Something is not working as expected? Some data is wrong? Documentation is missi
 * [https://www.service-public.fr/particuliers/vosdroits/F33078](https://www.service-public.fr/particuliers/vosdroits/F33078)
 * [https://www.wikiberal.org/w/images/1/1a/Num%C3%A9ro_de_S%C3%A9curit%C3%A9_sociale.pdf](https://www.wikiberal.org/w/images/1/1a/Num%C3%A9ro_de_S%C3%A9curit%C3%A9_sociale.pdf)
 * [https://public.opendatasoft.com/explore/dataset/correspondance-code-insee-code-postal/](https://public.opendatasoft.com/explore/dataset/correspondance-code-insee-code-postal/)
+* [https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France](https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France)
 
 ## Financial Support
 
