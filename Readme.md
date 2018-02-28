@@ -2,7 +2,7 @@
 
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) [![npm version](https://badge.fury.io/js/french-ssn.svg)](http://badge.fury.io/js/french-ssn) [![CircleCI Build Status](https://circleci.com/gh/aymericbouzy/french-ssn.svg?style=shield)](https://circleci.com/gh/aymericbouzy/french-ssn) [![codecov](https://codecov.io/gh/aymericbouzy/french-ssn/branch/master/graph/badge.svg)](https://codecov.io/gh/aymericbouzy/french-ssn)
 
-"A la carte" parsing, validation and creation of French Social Security Numbers.
+"A la carte" parsing, validation and creation of French Social Security Numbers (named by French people as "Carte Vitale", "Numéro de sécu", "Numéro de sécurité sociale", "NIR", "Carte de sécu" ...)
 
 ## Installation
 
