@@ -20,11 +20,10 @@ const makeGetInsee = ({
 const makeGetCity = ({ cities }) =>
   makeGetInsee({
     items: cities,
-    merge: (insee, city = []) => {
+    merge: (insee, city) => {
       const [postalCode, name] = city
       return { postalCode, name, insee }
     },
-    skipError: true,
   })
 
 const getCountry = makeGetInsee({ items: countries })
