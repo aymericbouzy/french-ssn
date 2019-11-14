@@ -11,8 +11,8 @@ describe("born in France", () => {
           month: 4,
           year: 89,
           place: "78650",
-        })
-      )
+        }),
+      ),
     ).toEqual({
       gender: {
         name: "female",
@@ -48,8 +48,9 @@ describe("corner cases", () => {
       parse(
         makeSSN({
           month: 20,
-        })
-      )
+        }),
+        "hello",
+      ),
     ).toEqual(
       expect.objectContaining({
         birth: expect.objectContaining({
@@ -57,7 +58,7 @@ describe("corner cases", () => {
             unknown: true,
           },
         }),
-      })
+      }),
     )
   })
 
