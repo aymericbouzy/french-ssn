@@ -66,7 +66,7 @@ describe("birth country", () => {
 it("00, 20 and 96 county codes have an unknown country", () => {
   ;["00", "20", "96"].map(countyCode => {
     expect(makePlace(`${countyCode}101`, 1980)).toEqual({
-      city: { insee: `${countyCode}101`, unknown: true },
+      city: { insee: `${countyCode}101` },
       country: { unknown: true },
       county: {
         insee: countyCode,
@@ -96,30 +96,22 @@ it("works for Corsica", () => {
   })
   expect(makePlace("2A048").city).toEqual({
     insee: "2A048",
-    name: "CALCATOGGIO",
-    postalCode: "20111",
   })
 })
 
 it("includes the city when born in France", () => {
   expect(makePlace("78396").city).toEqual({
     insee: "78396",
-    name: "LE MESNIL-LE-ROI",
-    postalCode: "78600",
   })
 })
 
 it("includes the city when born in Algeria before 1962", () => {
   expect(makePlace("91112", 1956).city).toEqual({
     insee: "91112",
-    name: "Aïn-Taya",
-    postalCode: null,
   })
 
   expect(makePlace("91112", 1978).city).toEqual({
     insee: "91112",
-    name: "BROUY",
-    postalCode: "91150",
   })
 })
 

@@ -1,8 +1,6 @@
 import between from "./between"
 import countries from "../../data/countries.json"
-import cities from "../../data/cities.json"
 import counties from "../../data/counties.json"
-import algerianCities from "../../data/algerianCities.json"
 import unknown from "./unknown"
 
 const makeGetInsee = ({
@@ -17,29 +15,10 @@ const makeGetInsee = ({
   return merge(insee, item)
 }
 
-const makeGetCity = ({ cities }) =>
-  makeGetInsee({
-    items: cities,
-    merge: (insee, city) => {
-      const [postalCode, name] = city
-      return { postalCode, name, insee }
-    },
-  })
-
 const getCountry = makeGetInsee({ items: countries })
 const getCounty = makeGetInsee({
   items: counties,
   error: "appears to be incorrect",
-})
-const getCity = makeGetCity({ cities })
-const getAlgerianCity = makeGetCity({
-  cities: algerianCities,
-})
-const getTunisianCity = makeGetCity({
-  cities: {},
-})
-const getmoroccanCity = makeGetCity({
-  cities: {},
 })
 
 const makePlace = ({ country, county = unknown(), city = unknown() }) => {
@@ -65,24 +44,24 @@ export default (insee, year) => {
     if (between(91, countyCode, 94) && year <= 1962) {
       return makePlace({
         country: getCountry("352"),
-        city: getAlgerianCity(insee),
+        city: { insee },
       })
     }
     if (countyCode === "95" && year <= 1964) {
       return makePlace({
         country: getCountry("350"),
-        city: getTunisianCity(insee),
+        city: { insee },
       })
     }
     if (countyCode === "96" && year <= 1964) {
       return makePlace({
         country: getCountry("351"),
-        city: getmoroccanCity(insee),
+        city: { insee },
       })
     }
   }
   return makePlace({
     county: getCounty(countyCode),
-    city: getCity(insee),
+    city: { insee },
   })
 }

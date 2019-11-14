@@ -28,8 +28,6 @@ describe("born in France", () => {
         approximateDate: expect.any(Date),
         city: {
           insee: "78650",
-          name: "LE VESINET",
-          postalCode: "78110",
         },
         country: {
           insee: "100",
