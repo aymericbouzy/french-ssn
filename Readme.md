@@ -45,8 +45,6 @@ SSN.parse("2 55 08 14 168 025 38")
       name: 'Calvados'
     },
     city: {
-      postalCode: '14710',
-      name: 'COLOMBIERES',
       insee: '14168'
     }
   }
@@ -61,25 +59,21 @@ SSN.make({ gender: 1, month: 5, year: 78, place: "99330", rank: 108 }) // "17805
 
 ## Api
 
-| Method | arguments | returned value | throws |
-| ------ | --------- | -------------- | ------ |
-| `parse` | `ssn: string \| number` : You may provide your ssn in various formats : a number with 15 digits, a string, with or without spaces, or any other delimiting character | an object containing information about the ssn owner | will throw if ssn is not correctly formated or if control key does not match. Will not throw if information provided does not make sense, information will simply be marked as "unknown". Eg: `parse("0 ...").gender = { unknown: true }` |
-| `validate` | `ssn: string \| number` | `boolean` (this is only a convenience function, it calls `parse` under the hood in a try catch block) | never |
-| `getControlKey` | `partialSSN: string \| number` : The first 13 characters of the ssn | `string` : the control key (2 digits between "01" and "97") | will throw if ssn is not correctly formated |
-| `make` | `params: { gender: string? \| number?, month: string? \| number?, year: string? \| number?, place: string? \| number?, rank: string? \| number?, controlKey: string? \| number? }` | `string` Mostly useful for tests, this function creates an SSN with the given params. If controlKey is not provided it is auto filled with a valid value. All named parameters of the function are optionnal. | |
+| Method          | arguments                                                                                                                                                                          |  returned value                                                                                                                                                                                               |  throws                                                                                                                                                                                                                                   |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `parse`         | `ssn: string \| number` : You may provide your ssn in various formats : a number with 15 digits, a string, with or without spaces, or any other delimiting character               | an object containing information about the ssn owner                                                                                                                                                          | will throw if ssn is not correctly formated or if control key does not match. Will not throw if information provided does not make sense, information will simply be marked as "unknown". Eg: `parse("0 ...").gender = { unknown: true }` |
+| `validate`      | `ssn: string \| number`                                                                                                                                                            | `boolean` (this is only a convenience function, it calls `parse` under the hood in a try catch block)                                                                                                         | never                                                                                                                                                                                                                                     |
+| `getControlKey` | `partialSSN: string \| number` : The first 13 characters of the ssn                                                                                                                |  `string` : the control key (2 digits between "01" and "97")                                                                                                                                                  | will throw if ssn is not correctly formated                                                                                                                                                                                               |
+| `make`          | `params: { gender: string? \| number?, month: string? \| number?, year: string? \| number?, place: string? \| number?, rank: string? \| number?, controlKey: string? \| number? }` | `string` Mostly useful for tests, this function creates an SSN with the given params. If controlKey is not provided it is auto filled with a valid value. All named parameters of the function are optionnal. |                                                                                                                                                                                                                                           |
 
 ## Features
 
-* Corsica (2A, 2B)
-* DOM-TOM
-* Birth in Foreign countries
-* Birth in Algeria before 1962
-* Birth in Morocco or Tunisia before 1964
-* No dependencies (only dev dependencies)
-
-## Limitations
-
-This package loads in memory the name and postal code of 39k+ French towns. You should probably not try to send this package client side.
+- Corsica (2A, 2B)
+- DOM-TOM
+- Birth in Foreign countries
+- Birth in Algeria before 1962
+- Birth in Morocco or Tunisia before 1964
+- No dependencies (only dev dependencies)
 
 ## Contributing
 
@@ -98,11 +92,10 @@ Something is not working as expected? Some data is wrong? Documentation is missi
 
 (in French)
 
-* [http://xml.insee.fr/schema/nir.html](http://xml.insee.fr/schema/nir.html)
-* [https://www.service-public.fr/particuliers/vosdroits/F33078](https://www.service-public.fr/particuliers/vosdroits/F33078)
-* [https://www.wikiberal.org/w/images/1/1a/Num%C3%A9ro_de_S%C3%A9curit%C3%A9_sociale.pdf](https://www.wikiberal.org/w/images/1/1a/Num%C3%A9ro_de_S%C3%A9curit%C3%A9_sociale.pdf)
-* [https://public.opendatasoft.com/explore/dataset/correspondance-code-insee-code-postal/](https://public.opendatasoft.com/explore/dataset/correspondance-code-insee-code-postal/)
-* [https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France](https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France)
+- [http://xml.insee.fr/schema/nir.html](http://xml.insee.fr/schema/nir.html)
+- [https://www.service-public.fr/particuliers/vosdroits/F33078](https://www.service-public.fr/particuliers/vosdroits/F33078)
+- [https://www.wikiberal.org/w/images/1/1a/Num%C3%A9ro_de_S%C3%A9curit%C3%A9_sociale.pdf](https://www.wikiberal.org/w/images/1/1a/Num%C3%A9ro_de_S%C3%A9curit%C3%A9_sociale.pdf)
+- [https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France](https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France)
 
 ## Financial Support
 
