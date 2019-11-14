@@ -11,8 +11,8 @@ describe("born in France", () => {
           month: 4,
           year: 89,
           place: "78650",
-        }),
-      ),
+        })
+      )
     ).toEqual({
       gender: {
         name: "female",
@@ -28,8 +28,6 @@ describe("born in France", () => {
         approximateDate: expect.any(Date),
         city: {
           insee: "78650",
-          name: "LE VESINET",
-          postalCode: "78110",
         },
         country: {
           insee: "100",
@@ -50,8 +48,8 @@ describe("corner cases", () => {
       parse(
         makeSSN({
           month: 20,
-        }),
-      ),
+        })
+      )
     ).toEqual(
       expect.objectContaining({
         birth: expect.objectContaining({
@@ -59,7 +57,7 @@ describe("corner cases", () => {
             unknown: true,
           },
         }),
-      }),
+      })
     )
   })
 
