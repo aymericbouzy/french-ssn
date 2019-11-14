@@ -49,7 +49,6 @@ describe("corner cases", () => {
         makeSSN({
           month: 20,
         }),
-        "hello",
       ),
     ).toEqual(
       expect.objectContaining({
