@@ -7,16 +7,34 @@ import makePlace from "./parse/makePlace"
 import addTitle from "./parse/addTitle"
 import addApproximateBirthDate from "./parse/addApproximateBirthDate"
 import addApproximateAge from "./parse/addApproximateAge"
+import addProvisional from "./parse/addProvisional"
 
-export default ssn => {
+const re = /^((\d)(\d{2})(\d{2})(\d{5}|2[abAB]\d{3})(\d{3}))(\d{2})$/
+
+export const getParts = ssn => {
   ssn = normalize(ssn)
-  const result = { birth: {} }
-  const re = /^((\d)(\d{2})(\d{2})(\d{5}|2[abAB]\d{3})(\d{3}))(\d{2})$/
   const parts = re.exec(ssn)
   if (!parts) {
     throw new Error("Unexpected error")
   }
-  const [partialSsn, gender, year, month, place, , controlKey] = parts.slice(1)
+  const [
+    partialSsn,
+    gender,
+    year,
+    month,
+    place,
+    rank,
+    controlKey,
+  ] = parts.slice(1)
+  return { partialSsn, gender, year, month, place, rank, controlKey }
+}
+
+export default ssn => {
+  const { partialSsn, gender, year, month, place, rank, controlKey } = getParts(
+    ssn,
+  )
+  const result = { birth: {} }
+
   checkControlKey(partialSsn, controlKey)
   result.birth.month = makeMonth(month)
   result.gender = makeGender(gender)
@@ -28,5 +46,6 @@ export default ssn => {
   addTitle(result)
   addApproximateBirthDate(result)
   addApproximateAge(result)
+  addProvisional(result, gender)
   return result
 }

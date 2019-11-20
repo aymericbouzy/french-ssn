@@ -14,6 +14,7 @@ describe("born in France", () => {
         }),
       ),
     ).toEqual({
+      provisional: false,
       gender: {
         name: "female",
         title: "Mme",
