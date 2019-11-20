@@ -7,6 +7,7 @@ import makePlace from "./parse/makePlace"
 import addTitle from "./parse/addTitle"
 import addApproximateBirthDate from "./parse/addApproximateBirthDate"
 import addApproximateAge from "./parse/addApproximateAge"
+import addProvisional from "./parse/addProvisional"
 
 export default ssn => {
   ssn = normalize(ssn)
@@ -28,5 +29,6 @@ export default ssn => {
   addTitle(result)
   addApproximateBirthDate(result)
   addApproximateAge(result)
+  addProvisional(result, gender)
   return result
 }
