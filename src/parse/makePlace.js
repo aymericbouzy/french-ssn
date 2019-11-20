@@ -29,12 +29,19 @@ const makePlace = ({ country, county = unknown(), city = unknown() }) => {
   }
 }
 
-export default (insee, year) => {
-  const result = /^([0-8][0-9]|2[abAB]|9[0-69]|9[78][0-9])(\d+)$/.exec(insee)
+const re = /^([0-8][0-9]|2[abAB]|9[0-69]|9[78][0-9])(\d+)$/
+
+export const getParts = insee => {
+  const result = re.exec(insee)
   if (!result) {
     throw new Error(`Unkown error`)
   }
   const [countyCode, code] = result.slice(1)
+  return { countyCode, code }
+}
+
+export default (insee, year) => {
+  const { countyCode, code } = getParts(insee)
   if (countyCode === "99") {
     return makePlace({
       country: getCountry(code),
