@@ -46,6 +46,6 @@ export default ssn => {
   addTitle(result)
   addApproximateBirthDate(result)
   addApproximateAge(result)
-  addProvisional(result, gender)
+  addProvisional(result, gender, controlKey)
   return result
 }
