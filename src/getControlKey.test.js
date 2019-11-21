@@ -2,7 +2,11 @@ import getControlKey from "./getControlKey"
 
 it("returns the expected control key", () => {
   expect(getControlKey("2890478342163")).toBe("49")
+})
+
+it("works with extreme values", () => {
   expect(getControlKey("2890478342212")).toBe("97")
+  expect(getControlKey("2890478342211")).toBe("01")
 })
 
 it("pads the key with zeros", () => {
