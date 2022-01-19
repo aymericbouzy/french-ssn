@@ -1,6 +1,7 @@
 import getControlKey from "./getControlKey"
 import parse from "./parse"
 import make from "./makeSSN"
+import format from "./format"
 
 export { getControlKey, parse, make }
 export const validate = ssn => {
@@ -17,4 +18,5 @@ export default {
   parse,
   validate,
   make,
+  format,
 }
