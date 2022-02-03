@@ -24,6 +24,6 @@ const makeApproximateBirthDate = ({ year, month: { index: month } }) => {
   return dateBetween(date, endOfYear)
 }
 
-export default data => {
+export default (data) => {
   data.birth.approximateDate = makeApproximateBirthDate(data.birth)
 }

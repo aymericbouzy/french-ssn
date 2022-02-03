@@ -3,6 +3,6 @@ const titles = {
   female: "Mme",
 }
 
-export default data => {
+export default (data) => {
   data.gender.title = titles[data.gender.name]
 }

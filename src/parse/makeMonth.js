@@ -16,7 +16,7 @@ const months = [
   "décembre",
 ]
 
-export default month => {
+export default (month) => {
   month = parseInt(month)
   if (between(1, month, 12)) {
     return {

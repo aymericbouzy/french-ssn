@@ -11,28 +11,20 @@ import addProvisional from "./parse/addProvisional"
 
 const re = /^((\d)(\d{2})(\d{2})(\d{5}|2[abAB]\d{3})(\d{3}))(\d{2})$/
 
-export const getParts = ssn => {
+export const getParts = (ssn) => {
   ssn = normalize(ssn)
   const parts = re.exec(ssn)
   if (!parts) {
     throw new Error("Unexpected error")
   }
-  const [
-    partialSsn,
-    gender,
-    year,
-    month,
-    place,
-    rank,
-    controlKey,
-  ] = parts.slice(1)
+  const [partialSsn, gender, year, month, place, rank, controlKey] =
+    parts.slice(1)
   return { partialSsn, gender, year, month, place, rank, controlKey }
 }
 
-export default ssn => {
-  const { partialSsn, gender, year, month, place, rank, controlKey } = getParts(
-    ssn,
-  )
+export default (ssn) => {
+  const { partialSsn, gender, year, month, place, rank, controlKey } =
+    getParts(ssn)
   const result = { birth: {} }
 
   checkControlKey(partialSsn, controlKey)

@@ -24,7 +24,7 @@ describe("birth country", () => {
   })
 
   it("works for Algerian people before 1962", () => {
-    ;["91112", "92519", "93101", "94423"].map(insee => {
+    ;["91112", "92519", "93101", "94423"].map((insee) => {
       expect(makePlace(insee, 1962).country).toEqual({
         insee: "352",
         name: "Algérie",
@@ -64,7 +64,7 @@ describe("birth country", () => {
 })
 
 it("00, 20 and 96 county codes have an unknown country", () => {
-  ;["00", "20", "96"].map(countyCode => {
+  ;["00", "20", "96"].map((countyCode) => {
     expect(makePlace(`${countyCode}101`, 1980)).toEqual({
       city: { insee: `${countyCode}101` },
       country: { unknown: true },

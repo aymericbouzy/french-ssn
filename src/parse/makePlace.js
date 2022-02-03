@@ -3,17 +3,15 @@ import countries from "../../data/countries.json"
 import counties from "../../data/counties.json"
 import unknown from "./unknown"
 
-const makeGetInsee = ({
-  items,
-  merge = (insee, name) => ({ insee, name }),
-  error,
-}) => insee => {
-  const item = items[insee]
-  if (!item) {
-    return { insee, ...unknown(error) }
+const makeGetInsee =
+  ({ items, merge = (insee, name) => ({ insee, name }), error }) =>
+  (insee) => {
+    const item = items[insee]
+    if (!item) {
+      return { insee, ...unknown(error) }
+    }
+    return merge(insee, item)
   }
-  return merge(insee, item)
-}
 
 const getCountry = makeGetInsee({ items: countries })
 const getCounty = makeGetInsee({
@@ -31,7 +29,7 @@ const makePlace = ({ country, county = unknown(), city = unknown() }) => {
 
 const re = /^([0-8][0-9]|2[abAB]|9[0-69]|9[78][0-9])(\d+)$/
 
-export const getParts = insee => {
+export const getParts = (insee) => {
   const result = re.exec(insee)
   if (!result) {
     throw new Error(`Unkown error`)

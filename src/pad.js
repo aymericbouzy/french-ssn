@@ -1,4 +1,4 @@
-const getLength = string => {
+const getLength = (string) => {
   if (typeof string === "number") {
     string = string.toString()
   }

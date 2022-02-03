@@ -1,6 +1,6 @@
 import unknown from "./unknown"
 
-export default gender => {
+export default (gender) => {
   gender = parseInt(gender)
   switch (gender) {
     case 1:

@@ -1,1 +1,1 @@
-export default error => ({ unknown: true, ...(error ? { error } : {}) })
+export default (error) => ({ unknown: true, ...(error ? { error } : {}) })

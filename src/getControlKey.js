@@ -1,7 +1,7 @@
 import pad from "./pad"
 import normalize from "./normalize"
 
-const makeInt = string => {
+const makeInt = (string) => {
   let penalties = 0
   string = string.replace(/a/gi, () => {
     penalties += 1000000
@@ -14,7 +14,7 @@ const makeInt = string => {
   return parseInt(string) - penalties
 }
 
-export default partialSsn => {
+export default (partialSsn) => {
   const number = makeInt(normalize(partialSsn, { length: 13 }))
-  return pad(97 - number % 97, 2)
+  return pad(97 - (number % 97), 2)
 }
