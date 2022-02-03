@@ -23,8 +23,16 @@ export const getParts = (ssn) => {
 }
 
 export default (ssn) => {
-  const { partialSsn, gender, year, month, place, rank, controlKey } =
-    getParts(ssn)
+  const {
+    partialSsn,
+    gender,
+    year,
+    month,
+    place,
+    // eslint-disable-next-line no-unused-vars
+    rank,
+    controlKey,
+  } = getParts(ssn)
   const result = { birth: {} }
 
   checkControlKey(partialSsn, controlKey)
