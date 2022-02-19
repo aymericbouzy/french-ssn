@@ -2,7 +2,7 @@
   "name": "french-ssn",
   "version": "4.1.0-rc1",
   "description": "🇫🇷 A parser / validator for French Social Security Number",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "author": "Aymeric Bouzy <aymeric.bouzy@gmail.com>",
   "license": "MIT",
   "private": false,
@@ -35,7 +35,7 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.ts",
     "build": "tsc",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn tsc --build --clean && yarn build"
   },
   "repository": {
     "type": "git",
@@ -43,7 +43,6 @@
   },
   "homepage": "https://github.com/aymericbouzy/french-ssn",
   "files": [
-    "dist",
-    "data"
+    "dist"
   ]
 }
