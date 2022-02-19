@@ -3,7 +3,7 @@ import pad from "./pad"
 
 const lengths = [1, 2, 2, 5, 3]
 
-interface SsnInput {
+export interface SsnInput {
   gender?: string | number
   year?: string | number
   month?: string | number
