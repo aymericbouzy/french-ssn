@@ -3,7 +3,7 @@ import makeSSN from "./makeSSN"
 
 describe("born in France", () => {
   it("returns expected result", () => {
-    Date.now = jest.fn(() => new Date("2018"))
+    Date.now = jest.fn(() => new Date("2018").valueOf())
     expect(
       parse(
         makeSSN({

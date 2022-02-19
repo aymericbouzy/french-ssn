@@ -1,7 +1,7 @@
 import checkControlKey from "./checkControlKey"
 import normalize from "./normalize"
-import makeGender from "./parse/makeGender"
-import makeMonth from "./parse/makeMonth"
+import makeGender, { Gender } from "./parse/makeGender"
+import makeMonth, { Month } from "./parse/makeMonth"
 import makeYear from "./parse/makeYear"
 import makePlace from "./parse/makePlace"
 import addTitle from "./parse/addTitle"
@@ -11,7 +11,7 @@ import addProvisional from "./parse/addProvisional"
 
 const re = /^((\d)(\d{2})(\d{2})(\d{5}|2[abAB]\d{3})(\d{3}))(\d{2})$/
 
-export const getParts = (ssn) => {
+export const getParts = (ssn: string | number) => {
   ssn = normalize(ssn)
   const parts = re.exec(ssn)
   if (!parts) {
@@ -22,7 +22,7 @@ export const getParts = (ssn) => {
   return { partialSsn, gender, year, month, place, rank, controlKey }
 }
 
-export default (ssn) => {
+export default (ssn: string | number) => {
   const {
     partialSsn,
     gender,
@@ -33,7 +33,8 @@ export default (ssn) => {
     rank,
     controlKey,
   } = getParts(ssn)
-  const result = { birth: {} }
+  // FIXME
+  const result: any = { birth: {} }
 
   checkControlKey(partialSsn, controlKey)
   result.birth.month = makeMonth(month)
@@ -46,6 +47,6 @@ export default (ssn) => {
   addTitle(result)
   addApproximateBirthDate(result)
   addApproximateAge(result)
-  addProvisional(result, gender, controlKey)
+  addProvisional(result, Number(gender), controlKey)
   return result
 }

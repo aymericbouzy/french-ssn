@@ -4,7 +4,7 @@ import make from "./makeSSN"
 import format from "./format"
 
 export { getControlKey, parse, make }
-export const validate = (ssn) => {
+export const validate = (ssn: string | number) => {
   try {
     parse(ssn)
     return true

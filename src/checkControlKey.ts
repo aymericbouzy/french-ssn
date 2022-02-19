@@ -1,6 +1,6 @@
 import getControlKey from "./getControlKey"
 
-export default (partialSsn, controlKey) => {
+export default (partialSsn: string | number, controlKey: string) => {
   if (controlKey !== "98") {
     const expectedControlKey = getControlKey(partialSsn)
     if (controlKey != expectedControlKey) {

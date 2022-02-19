@@ -4,7 +4,7 @@ it("returns the gender", () => {
   ;[1, 3, 7].map((gender) => {
     expect(makeGender(gender.toString())).toEqual({ name: "male" })
   })
-  ;[(2, 4, 8)].map((gender) => {
+  ;[2, 4, 8].map((gender) => {
     expect(makeGender(gender.toString())).toEqual({ name: "female" })
   })
 })

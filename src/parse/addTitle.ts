@@ -3,6 +3,8 @@ const titles = {
   female: "Mme",
 }
 
-export default (data) => {
+// FIXME
+export default (data: any) => {
+  // @ts-ignore FIXME
   data.gender.title = titles[data.gender.name]
 }

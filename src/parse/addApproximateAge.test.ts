@@ -1,7 +1,7 @@
 import addApproximateAge from "./addApproximateAge"
 
 it("adds approximate age", () => {
-  Date.now = jest.fn(() => "2018-01-02")
+  Date.now = jest.fn(() => new Date("2018-01-02").valueOf())
 
   const data = {
     birth: {
@@ -9,12 +9,13 @@ it("adds approximate age", () => {
     },
   }
   addApproximateAge(data)
+  // @ts-ignore FIXME
   expect(data.approximateAge).toBe(38)
 })
 
 describe("birthDate is soon to come", () => {
   it("adds approximate age", () => {
-    Date.now = jest.fn(() => "2018-01-02")
+    Date.now = jest.fn(() => new Date("2018-01-02").valueOf())
 
     const data = {
       birth: {
@@ -22,6 +23,7 @@ describe("birthDate is soon to come", () => {
       },
     }
     addApproximateAge(data)
+    // @ts-ignore FIXME
     expect(data.approximateAge).toBe(37)
   })
 })

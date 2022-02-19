@@ -1,7 +1,12 @@
-import unknown from "./unknown"
+import unknown, { UnknownField } from "./unknown"
 
-export default (gender) => {
-  gender = parseInt(gender)
+export type Gender = UnknownField | {
+  name: string
+  title?: "M" | "Mme"
+}
+
+export default (genderAsString: string): Gender => {
+  const gender = Number(genderAsString)
   switch (gender) {
     case 1:
     case 3:

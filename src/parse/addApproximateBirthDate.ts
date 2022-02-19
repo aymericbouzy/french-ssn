@@ -1,6 +1,6 @@
 const millisecondsCountInOneDay = 1000 * 60 * 60 * 24
 
-const dateBetween = (start, end) => {
+const dateBetween = (start: Date, end: Date) => {
   const date = new Date(start.valueOf())
   date.setUTCDate(
     date.getUTCDate() +
@@ -11,7 +11,8 @@ const dateBetween = (start, end) => {
   return date
 }
 
-const makeApproximateBirthDate = ({ year, month: { index: month } }) => {
+// FIXME
+const makeApproximateBirthDate = ({ year, month: { index: month } }: any) => {
   const date = new Date(Date.UTC(year, 0, 1))
   if (month) {
     date.setUTCMonth(month - 1)
@@ -24,6 +25,7 @@ const makeApproximateBirthDate = ({ year, month: { index: month } }) => {
   return dateBetween(date, endOfYear)
 }
 
-export default (data) => {
+// FIXME
+export default (data: any) => {
   data.birth.approximateDate = makeApproximateBirthDate(data.birth)
 }
