@@ -40,15 +40,31 @@ export default class Birth {
     } = this
 
     return {
-      month,
+      month: noUndefined(month),
       year,
-      country,
-      county,
+      country: noUndefined(country),
+      county: noUndefined(county),
       city,
       approximateDate,
       approximateAge,
     }
   }
+}
+
+function noUndefined<T extends { unknown: true }>(t: T): T
+function noUndefined<T extends { unknown: undefined }>(t: T): Omit<T, "unknown">
+function noUndefined<T extends { unknown: true | undefined }>(
+  t: T,
+): T | Omit<T, "unknown">
+function noUndefined<T extends { unknown: true | undefined }>({
+  unknown,
+  ...rest
+}: T): T | Omit<T, "unknown"> {
+  if (unknown) {
+    return { unknown, ...rest }
+  }
+
+  return rest
 }
 
 const millisecondsCountInOneDay = 1000 * 60 * 60 * 24
