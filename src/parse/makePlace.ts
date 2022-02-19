@@ -4,14 +4,12 @@ import counties from "../../data/counties.json"
 import unknown, { UnknownField } from "./unknown"
 
 const makeGetInsee =
-  ({
-    items,
-    error,
-  }: {
-    items: Record<string, string>;
-    error?: string
-  }) =>
-  (insee: string): { insee: string; name: string; unknown: undefined } | ({ insee: string } & UnknownField) => {
+  ({ items, error }: { items: Record<string, string>; error?: string }) =>
+  (
+    insee: string,
+  ):
+    | { insee: string; name: string; unknown: undefined }
+    | ({ insee: string } & UnknownField) => {
     const item = items[insee]
     if (!item) {
       return { insee, ...unknown(error) }
@@ -26,12 +24,16 @@ const getCounty = makeGetInsee({
 })
 
 interface Place {
-  country: UnknownField | ReturnType<typeof getCountry>;
-  county: UnknownField | ReturnType<typeof getCounty>;
-  city: UnknownField | { insee: string };
+  country: UnknownField | ReturnType<typeof getCountry>
+  county: UnknownField | ReturnType<typeof getCounty>
+  city: UnknownField | { insee: string }
 }
 
-const makePlace = ({ country, county = unknown(), city = unknown() }: Partial<Place>): Place => {
+const makePlace = ({
+  country,
+  county = unknown(),
+  city = unknown(),
+}: Partial<Place>): Place => {
   return {
     country: country || (county.unknown ? unknown() : getCountry("100")),
     county,

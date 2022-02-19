@@ -1,9 +1,11 @@
 import unknown, { UnknownField } from "./unknown"
 
-export type Gender = UnknownField | {
-  name: string
-  title?: "M" | "Mme"
-}
+export type Gender =
+  | UnknownField
+  | {
+      name: string
+      title?: "M" | "Mme"
+    }
 
 export default (genderAsString: string): Gender => {
   const gender = Number(genderAsString)

@@ -4,12 +4,12 @@ import pad from "./pad"
 const lengths = [1, 2, 2, 5, 3]
 
 interface SsnInput {
-  gender?: string | number;
-  year?: string | number;
-  month?: string | number;
-  place?: string | number;
-  rank?: string | number;
-  controlKey?: string | number;
+  gender?: string | number
+  year?: string | number
+  month?: string | number
+  place?: string | number
+  rank?: string | number
+  controlKey?: string | number
 }
 
 export default ({

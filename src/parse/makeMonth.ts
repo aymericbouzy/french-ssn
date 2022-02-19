@@ -24,7 +24,7 @@ export type Month =
     }
 
 export default (monthAsString: string): Month => {
-  const month = Number(monthAsString);
+  const month = Number(monthAsString)
   if (between(1, month, 12)) {
     return {
       name: months[month - 1],

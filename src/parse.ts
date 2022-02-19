@@ -1,7 +1,7 @@
 import checkControlKey from "./checkControlKey"
 import normalize from "./normalize"
-import makeGender, { Gender } from "./parse/makeGender"
-import makeMonth, { Month } from "./parse/makeMonth"
+import makeGender from "./parse/makeGender"
+import makeMonth from "./parse/makeMonth"
 import makeYear from "./parse/makeYear"
 import makePlace from "./parse/makePlace"
 import addTitle from "./parse/addTitle"
@@ -29,7 +29,7 @@ export default (ssn: string | number) => {
     year,
     month,
     place,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     rank,
     controlKey,
   } = getParts(ssn)
