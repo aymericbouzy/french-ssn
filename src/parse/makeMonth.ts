@@ -21,6 +21,7 @@ export type Month =
   | {
       name: string
       index: number
+      unknown: undefined
     }
 
 export default (monthAsString: string): Month => {
@@ -29,6 +30,7 @@ export default (monthAsString: string): Month => {
     return {
       name: months[month - 1],
       index: month,
+      unknown: undefined,
     }
   }
   if (between(30, month, 42) || between(50, month, 99) || month === 20) {

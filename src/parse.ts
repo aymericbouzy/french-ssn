@@ -1,13 +1,7 @@
 import checkControlKey from "./checkControlKey"
 import normalize from "./normalize"
-import makeGender from "./parse/makeGender"
-import makeMonth from "./parse/makeMonth"
-import makeYear from "./parse/makeYear"
-import makePlace from "./parse/makePlace"
-import addTitle from "./parse/addTitle"
-import addApproximateBirthDate from "./parse/addApproximateBirthDate"
-import addApproximateAge from "./parse/addApproximateAge"
-import addProvisional from "./parse/addProvisional"
+import makeGender, { Gender } from "./parse/makeGender"
+import Birth from "./Birth"
 
 const re = /^((\d)(\d{2})(\d{2})(\d{5}|2[abAB]\d{3})(\d{3}))(\d{2})$/
 
@@ -22,31 +16,46 @@ export const getParts = (ssn: string | number) => {
   return { partialSsn, gender, year, month, place, rank, controlKey }
 }
 
-export default (ssn: string | number) => {
-  const {
-    partialSsn,
-    gender,
-    year,
-    month,
-    place,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    rank,
-    controlKey,
-  } = getParts(ssn)
-  // FIXME
-  const result: any = { birth: {} }
+class Ssn {
+  readonly birth: Birth
+  readonly gender: Gender
+  readonly provisional: boolean
 
-  checkControlKey(partialSsn, controlKey)
-  result.birth.month = makeMonth(month)
-  result.gender = makeGender(gender)
-  result.birth.year = makeYear(year)
-  result.birth = {
-    ...result.birth,
-    ...makePlace(place, result.birth.year),
+  constructor(ssn: string | number) {
+    const {
+      partialSsn,
+      gender,
+      year,
+      month,
+      place,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      rank,
+      controlKey,
+    } = getParts(ssn)
+    checkControlKey(partialSsn, controlKey)
+
+    this.gender = makeGender(gender)
+    this.birth = new Birth(month, year, place)
+    this.provisional = isProvisional(gender, controlKey)
   }
-  addTitle(result)
-  addApproximateBirthDate(result)
-  addApproximateAge(result)
-  addProvisional(result, Number(gender), controlKey)
-  return result
+
+  toJSON() {
+    const { gender, provisional } = this
+    const { approximateAge, ...birth } = this.birth.toJSON()
+
+    return {
+      birth,
+      gender,
+      provisional,
+      approximateAge,
+    }
+  }
+}
+
+function isProvisional(gender: string, controlKey: string) {
+  return Number(gender) > 2 || controlKey === "98"
+}
+
+export default (ssn: string | number) => {
+  return new Ssn(ssn).toJSON()
 }

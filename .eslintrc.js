@@ -25,13 +25,6 @@ module.exports = {
       files: ["**/*.ts"],
       extends: ["plugin:@typescript-eslint/recommended"],
       rules: {
-        "@typescript-eslint/ban-ts-comment": [
-          "error",
-          {
-            "ts-expect-error": "allow-with-description",
-            "ts-ignore": "allow-with-description",
-          },
-        ],
         "@typescript-eslint/no-extra-semi": "off",
       },
     },

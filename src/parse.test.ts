@@ -43,6 +43,23 @@ describe("born in France", () => {
   })
 })
 
+describe("provisional number", () => {
+  it("is provisional if gender is greater than 2", () => {
+    const ssn = parse(makeSSN({ gender: 3 }))
+    expect(ssn.provisional).toBe(true)
+  })
+
+  it("is provisional if controlKey is 98", () => {
+    const ssn = parse(makeSSN({ controlKey: 98 }))
+    expect(ssn.provisional).toBe(true)
+  })
+
+  it("is not provisional otherwise", () => {
+    const ssn = parse(makeSSN({ gender: 1 }))
+    expect(ssn.provisional).toBe(false)
+  })
+})
+
 describe("corner cases", () => {
   it("works with unknown birth month", () => {
     expect(

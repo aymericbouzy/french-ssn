@@ -23,7 +23,7 @@ const getCounty = makeGetInsee({
   error: "appears to be incorrect",
 })
 
-interface Place {
+export interface Place {
   country: UnknownField | ReturnType<typeof getCountry>
   county: UnknownField | ReturnType<typeof getCounty>
   city: UnknownField | { insee: string }
