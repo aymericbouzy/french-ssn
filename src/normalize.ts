@@ -1,4 +1,4 @@
-export default (ssn, { length = 15 } = {}) => {
+export default (ssn: string | number, { length = 15 } = {}) => {
   if (typeof ssn === "number") {
     ssn = ssn.toString()
   }

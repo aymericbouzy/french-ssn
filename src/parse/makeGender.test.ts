@@ -2,10 +2,13 @@ import makeGender from "./makeGender"
 
 it("returns the gender", () => {
   ;[1, 3, 7].map((gender) => {
-    expect(makeGender(gender.toString())).toEqual({ name: "male" })
+    expect(makeGender(gender.toString())).toEqual({ name: "male", title: "M" })
   })
-  ;[(2, 4, 8)].map((gender) => {
-    expect(makeGender(gender.toString())).toEqual({ name: "female" })
+  ;[2, 4, 8].map((gender) => {
+    expect(makeGender(gender.toString())).toEqual({
+      name: "female",
+      title: "Mme",
+    })
   })
 })
 

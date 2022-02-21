@@ -1,8 +1,8 @@
 {
   "name": "french-ssn",
-  "version": "4.0.0",
+  "version": "4.1.0-rc4",
   "description": "🇫🇷 A parser / validator for French Social Security Number",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "author": "Aymeric Bouzy <aymeric.bouzy@gmail.com>",
   "license": "MIT",
   "private": false,
@@ -16,29 +16,26 @@
     "validator"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^23.4.2",
-    "byline": "^5.0.0",
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
     "codecov": "^3.0.0",
-    "eslint": "^4.0.0",
-    "eslint-config-google": "^0.9.1",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-prettier": "^2.0.0",
-    "jest": "^24.0.0",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.0.0",
     "jest-junit": "^3.6.0",
     "prettier": "^2.5.1",
-    "regenerator-runtime": "^0.11.1"
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.5"
   },
   "scripts": {
     "test": "jest",
-    "lint": "eslint src",
-    "build": "babel src --out-dir dist --ignore '**/*.test.js'",
-    "prepublishOnly": "yarn build"
+    "lint": "eslint . --ext .js,.ts",
+    "build": "tsc",
+    "prepublishOnly": "yarn tsc --build --clean && yarn build"
   },
   "repository": {
     "type": "git",
@@ -46,11 +43,6 @@
   },
   "homepage": "https://github.com/aymericbouzy/french-ssn",
   "files": [
-    "dist",
-    "data"
-  ],
-  "jest": {
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true
-  }
+    "dist"
+  ]
 }

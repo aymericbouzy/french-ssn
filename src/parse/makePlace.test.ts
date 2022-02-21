@@ -116,5 +116,6 @@ it("includes the city when born in Algeria before 1962", () => {
 })
 
 it("throws if input is not a string of 5 digits", () => {
+  // @ts-expect-error this is to test a pure JS behavior
   expect(() => makePlace()).toThrow("Unkown error")
 })

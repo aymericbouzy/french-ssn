@@ -3,8 +3,8 @@ import parse from "./parse"
 import make from "./makeSSN"
 import format from "./format"
 
-export { getControlKey, parse, make }
-export const validate = (ssn) => {
+export { getControlKey, parse, make, format }
+export const validate = (ssn: string | number) => {
   try {
     parse(ssn)
     return true

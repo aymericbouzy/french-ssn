@@ -1,36 +1,43 @@
 const prettier = require("./prettier.config.js")
 
 module.exports = {
-  parser: "babel-eslint",
+  root: true,
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint", "prettier", "import"],
   extends: [
     "eslint:recommended",
-    "prettier",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "prettier",
   ],
-  plugins: ["prettier", "import"],
+  settings: {
+    "import/resolver": {
+      typescript: {},
+    },
+  },
   rules: {
     "prettier/prettier": ["error", prettier],
     "no-var": "error",
     "prefer-const": "warn",
   },
-  parserOptions: {
-    ecmaVersion: 6,
-    sourceType: "module",
-    ecmaFeatures: {
-      jsx: true,
-      experimentalObjectRestSpread: false,
-    },
-  },
-  env: {
-    es6: true,
-    node: true,
-  },
   overrides: [
     {
-      files: ["**/*.test.js"],
+      files: ["**/*.ts"],
+      extends: ["plugin:@typescript-eslint/recommended"],
+      rules: {
+        "@typescript-eslint/no-extra-semi": "off",
+      },
+    },
+    {
+      files: ["**/*.test.ts"],
       env: {
         jest: true,
+      },
+    },
+    {
+      files: ["*.js"],
+      env: {
+        node: true,
       },
     },
   ],

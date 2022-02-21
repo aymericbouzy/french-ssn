@@ -1,16 +1,20 @@
 import between from "./between"
 import countries from "../../data/countries.json"
 import counties from "../../data/counties.json"
-import unknown from "./unknown"
+import unknown, { UnknownField } from "./unknown"
 
 const makeGetInsee =
-  ({ items, merge = (insee, name) => ({ insee, name }), error }) =>
-  (insee) => {
+  ({ items, error }: { items: Record<string, string>; error?: string }) =>
+  (
+    insee: string,
+  ):
+    | { insee: string; name: string; unknown: undefined }
+    | ({ insee: string } & UnknownField) => {
     const item = items[insee]
     if (!item) {
       return { insee, ...unknown(error) }
     }
-    return merge(insee, item)
+    return { insee, name: item, unknown: undefined }
   }
 
 const getCountry = makeGetInsee({ items: countries })
@@ -19,7 +23,17 @@ const getCounty = makeGetInsee({
   error: "appears to be incorrect",
 })
 
-const makePlace = ({ country, county = unknown(), city = unknown() }) => {
+export interface Place {
+  country: UnknownField | ReturnType<typeof getCountry>
+  county: UnknownField | ReturnType<typeof getCounty>
+  city: UnknownField | { insee: string }
+}
+
+const makePlace = ({
+  country,
+  county = unknown(),
+  city = unknown(),
+}: Partial<Place>): Place => {
   return {
     country: country || (county.unknown ? unknown() : getCountry("100")),
     county,
@@ -29,7 +43,7 @@ const makePlace = ({ country, county = unknown(), city = unknown() }) => {
 
 const re = /^([0-8][0-9]|2[abAB]|9[0-69]|9[78][0-9])(\d+)$/
 
-export const getParts = (insee) => {
+export const getParts = (insee: string) => {
   const result = re.exec(insee)
   if (!result) {
     throw new Error(`Unkown error`)
@@ -38,7 +52,7 @@ export const getParts = (insee) => {
   return { countyCode, code }
 }
 
-export default (insee, year) => {
+export default (insee: string, year?: number) => {
   const { countyCode, code } = getParts(insee)
   if (countyCode === "99") {
     return makePlace({
@@ -46,7 +60,7 @@ export default (insee, year) => {
     })
   }
   if (year) {
-    if (between(91, countyCode, 94) && year <= 1962) {
+    if (between(91, Number(countyCode), 94) && year <= 1962) {
       return makePlace({
         country: getCountry("352"),
         city: { insee },

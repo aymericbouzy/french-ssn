@@ -2,12 +2,15 @@ import normalize from "./normalize"
 import makeSSN from "./makeSSN"
 
 it("is a string", () => {
+  // @ts-expect-error this is to test a pure JS behavior
   expect(() => normalize()).toThrow(
     "Input must be a string or a 15 digits number",
   )
+  // @ts-expect-error this is to test a pure JS behavior
   expect(() => normalize({})).toThrow(
     "Input must be a string or a 15 digits number",
   )
+  // @ts-expect-error this is to test a pure JS behavior
   expect(() => normalize([1, 23, 34])).toThrow(
     "Input must be a string or a 15 digits number",
   )

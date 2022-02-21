@@ -15,5 +15,6 @@ it("works for powers of 10", () => {
 })
 
 it("throws on input that is not a number or a string", () => {
+  // @ts-expect-error this is to test a pure JS behavior
   expect(() => pad(undefined, 2)).toThrow("Cannot pad")
 })
