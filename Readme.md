@@ -4,6 +4,10 @@
 
 "A la carte" parsing, validation and creation of French Social Security Numbers (named by French people as "Carte Vitale", "Numéro de sécu", "Numéro de sécurité sociale", "NIR", "Carte de sécu" ...)
 
+## Try it!
+
+[replit sandbox is available here ⚡️](https://replit.com/@aymericbouzy/french-ssn#index.js)
+
 ## Installation
 
 ```sh
